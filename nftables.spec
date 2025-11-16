@@ -114,7 +114,7 @@ cd py/
 %pyproject_save_files nftables
 
 %post services
-if [[ -h /etc/systemd/system/multi-user.target.wants/nftables.service ]] ; then 
+if [ $1 -gt 1 ] && [[ -h /etc/systemd/system/multi-user.target.wants/nftables.service ]]; then
   echo "nftables.service is already enabled" 
 else
   %systemd_post nftables.service
