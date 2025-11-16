@@ -7,18 +7,20 @@ Summary:        Netfilter Tables userspace utilities
 
 License:        GPL-2.0-only
 URL:            https://netfilter.org/projects/nftables/
+
+URL:            https://netfilter.org/projects/nftables/
 Source0:        %{url}/files/%{name}-%{version}.tar.xz
 Source1:        %{url}/files/%{name}-%{version}.tar.xz.sig
-SOURCE2:        https://github.com/grumpey/nftables-test/blob/main/coreteam-gpg-key-0xD70D1A666ACF2B21.txt
-Source3:        https://github.com/grumpey/nftables-test/blob/main/nftables.service
-Source4:        https://github.com/grumpey/nftables-test/blob/main/nftables.conf
-Source5:        https://github.com/grumpey/nftables-test/blob/main/main.nft
-Source6:        https://github.com/grumpey/nftables-test/blob/main/router.nft
-Source7:        https://github.com/grumpey/nftables-test/blob/main/nat.nft
+SOURCE2:        coreteam-gpg-key-0xD70D1A666ACF2B21.txt
+Source3:        nftables.service
+Source4:        nftables.conf
+Source5:        main.nft
+Source6:        router.nft
+Source7:        nat.nft
 
-Patch01: https://github.com/grumpey/nftables-test/blob/main/0001-parser_bison-remove-leftover-utf-8-character-in-erro.patch
-Patch02: https://github.com/grumpey/nftables-test/blob/main/0002-tools-gitignore-nftables.service-file.patch
-Patch03: https://github.com/grumpey/nftables-test/blob/main/0003-monitor-Quote-device-names-in-chain-declarations-too.patch
+Patch01: 0001-parser_bison-remove-leftover-utf-8-character-in-erro.patch
+Patch02: 0002-tools-gitignore-nftables.service-file.patch
+Patch03: 0003-monitor-Quote-device-names-in-chain-declarations-too.patch
 
 #BuildRequires: autogen
 #BuildRequires: autoconf
