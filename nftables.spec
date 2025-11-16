@@ -118,9 +118,9 @@ cd py/
 %pyproject_save_files nftables
 
 %post services
-%if !%{%(systemctl -q is-enabled nftables.service)}
+if ! (( $(/usr/bin/systemctl -q is-enabled nftables.service) )) ; then 
 %systemd_post nftables.service
-%endif
+fi
 
 %preun services
 %systemd_preun nftables.service
