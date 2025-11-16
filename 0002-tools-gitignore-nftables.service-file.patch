@@ -1,0 +1,20 @@
+From cb04fcf84e436df0aa7865cd1cb951a71da849a4 Mon Sep 17 00:00:00 2001
+From: Phil Sutter <phil@nwl.cc>
+Date: Fri, 29 Aug 2025 01:51:01 +0200
+Subject: [PATCH] tools: gitignore nftables.service file
+
+Fixes: c4b17cf830510 ("tools: add a systemd unit for static rulesets")
+Signed-off-by: Phil Sutter <phil@nwl.cc>
+(cherry picked from commit 441ff666cb22921f23b14146a70c1111210364a2)
+---
+ tools/.gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 tools/.gitignore
+
+diff --git a/tools/.gitignore b/tools/.gitignore
+new file mode 100644
+index 0000000000000..2d06c49835b15
+--- /dev/null
++++ b/tools/.gitignore
+@@ -0,0 +1 @@
++nftables.service
