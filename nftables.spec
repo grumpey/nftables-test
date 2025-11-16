@@ -30,7 +30,7 @@ BuildRequires: flex
 BuildRequires: bison
 BuildRequires: pkgconfig(libmnl) >= 1.0.4
 BuildRequires: gmp-devel
-BuildRequires: pkgconfig(libnftnl) >= 1.3.0
+BuildRequires: pkgconfig(libnftnl) >= 1.2.9
 BuildRequires: systemd
 BuildRequires: asciidoc
 BuildRequires: pkgconfig(xtables) >= 1.6.1
