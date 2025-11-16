@@ -114,7 +114,13 @@ cd py/
 %pyproject_save_files nftables
 
 %post services
-if (( $(/usr/bin/systemctl -q is-enabled nftables.service) )) ; then 
+if (( $(/usr/bin/systemctl -q is-enabled nftables.service) )) ; then \
+echo "nftables.service is already enabled" ; \
+else   \
+echo "not-enabled"; \
+fi
+
+if (( $(/usr/bin/systemctl -q is-enabled nftables.service) )); then 
   echo "nftables.service is already enabled" 
 else
   %systemd_post nftables.service
