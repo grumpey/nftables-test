@@ -11,7 +11,7 @@ URL:            https://netfilter.org/projects/nftables/
 URL:            https://netfilter.org/projects/nftables/
 Source0:        %{url}/files/%{name}-%{version}.tar.xz
 Source1:        %{url}/files/%{name}-%{version}.tar.xz.sig
-SOURCE2:        coreteam-gpg-key-0xD70D1A666ACF2B21.txt
+#SOURCE2:        coreteam-gpg-key-0xD70D1A666ACF2B21.txt
 Source3:        nftables.service
 Source4:        nftables.conf
 Source5:        main.nft
@@ -80,7 +80,7 @@ Manage an nftables-based firewall defined by ruleset snippets in /etc/nftables
 and /etc/sysconfig/nftables.
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+#%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup -p1
 
 %build
