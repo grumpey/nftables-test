@@ -1,0 +1,30 @@
+From d15daf4165ee2c5d237c49face2e9e2fb81249ad Mon Sep 17 00:00:00 2001
+From: Pablo Neira Ayuso <pablo@netfilter.org>
+Date: Sun, 31 Aug 2025 23:37:51 +0200
+Subject: [PATCH] parser_bison: remove leftover utf-8 character in error
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+replace "‘" (UTF-8, 0xe280 0x98) with "'" (ASCII 0x27).
+
+Fixes: c92ec3b21979 ("src: remove utf-8 character in printf lines")
+Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
+(cherry picked from commit 7f37f3ca55810c2dc0e245ca7df108f160acb359)
+---
+ src/parser_bison.y | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/parser_bison.y b/src/parser_bison.y
+index 1e4b3f8a50c59..9ac1ca3537a8c 100644
+--- a/src/parser_bison.y
++++ b/src/parser_bison.y
+@@ -4292,7 +4292,7 @@ variable_expr		:	'$'	identifier
+ 					sym = symbol_lookup_fuzzy(scope, $2);
+ 					if (sym) {
+ 						erec_queue(error(&@2, "unknown identifier '%s'; "
+-								      "did you mean identifier '%s’?",
++								      "did you mean identifier '%s'?",
+ 								      $2, sym->identifier),
+ 							   state->msgs);
+ 					} else {

@@ -1,0 +1,28 @@
+From cb6c258f4780a3691bd8ce0ebe3657ac70510cc3 Mon Sep 17 00:00:00 2001
+From: Phil Sutter <phil@nwl.cc>
+Date: Thu, 28 Aug 2025 16:47:03 +0200
+Subject: [PATCH] monitor: Quote device names in chain declarations, too
+
+Fixed commit missed the fact that there are two routines printing chain
+declarations.
+
+Fixes: eb30f236d91a8 ("rule: print chain and flowtable devices in quotes")
+Signed-off-by: Phil Sutter <phil@nwl.cc>
+(cherry picked from commit ed1b5b672b2eeb6244bed566227bee2aa7a1e4b4)
+---
+ src/rule.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/rule.c b/src/rule.c
+index 0ad948ea87f2f..101fc235ebc4c 100644
+--- a/src/rule.c
++++ b/src/rule.c
+@@ -1131,7 +1131,7 @@ void chain_print_plain(const struct chain *chain, struct output_ctx *octx)
+ 
+ 			nft_print(octx, "devices = { ");
+ 			for (i = 0; i < chain->dev_array_len; i++) {
+-				nft_print(octx, "%s", chain->dev_array[i]);
++				nft_print(octx, "\"%s\"", chain->dev_array[i]);
+ 				if (i + 1 != chain->dev_array_len)
+ 					nft_print(octx, ", ");
+ 			}
