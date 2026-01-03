@@ -1,6 +1,6 @@
 Name:           nftables
-Version:        1.1.3
-Release:        6%{?dist}
+Version:        1.1.5
+Release:        3%{?dist}
 # Upstream released a 0.100 version, then 0.4. Need Epoch to get back on track.
 Epoch:          1
 Summary:        Netfilter Tables userspace utilities
@@ -16,6 +16,10 @@ Source5:        main.nft
 Source6:        router.nft
 Source7:        nat.nft
 
+Patch01: 0001-parser_bison-remove-leftover-utf-8-character-in-erro.patch
+Patch02: 0002-tools-gitignore-nftables.service-file.patch
+Patch03: 0003-monitor-Quote-device-names-in-chain-declarations-too.patch
+
 #BuildRequires: autogen
 #BuildRequires: autoconf
 #BuildRequires: automake
@@ -26,7 +30,7 @@ BuildRequires: flex
 BuildRequires: bison
 BuildRequires: pkgconfig(libmnl) >= 1.0.4
 BuildRequires: gmp-devel
-BuildRequires: pkgconfig(libnftnl) >= 1.2.9
+BuildRequires: pkgconfig(libnftnl) >= 1.3.0
 BuildRequires: systemd
 BuildRequires: asciidoc
 BuildRequires: pkgconfig(xtables) >= 1.6.1
@@ -114,9 +118,9 @@ cd py/
 %pyproject_save_files nftables
 
 %post services
-if [ $1 -eq 1 ] && [[ -h /etc/systemd/system/multi-user.target.wants/nftables.service ]]; then
-  echo "nftables.service is already enabled" 
-else
+# We want to keep nftables enabled on dist-upgrades
+# So if it is not enabled run the normal systemd_post
+if [ $1 -eq 1 ] && [[ \! -h /etc/systemd/system/multi-user.target.wants/nftables.service ]]; then
   %systemd_post nftables.service
 fi
 
@@ -148,8 +152,15 @@ fi
 %{_unitdir}/nftables.service
 
 %changelog
-* Wed Oct 01 2025 Phil Sutter <psutter@redhat.com> - 1:1.1.3-5
+* Sat Jan 03 2026 Kevin Fenzi <kevin@scrye.com> - 1:1.1.5-3
+- Adjust post to keep service enabled on dist-upgrades. Thanks grumpey0@gmail.com
+
+* Fri Sep 19 2025 Python Maint <python-maint@redhat.com> - 1:1.1.5-2
 - Rebuilt for Python 3.14.0rc3 bytecode
+
+* Wed Sep 03 2025 Phil Sutter <psutter@redhat.com> - 1:1.1.5-1
+- Add fixes from upstream
+- new version 1.1.5
 
 * Fri Aug 15 2025 Python Maint <python-maint@redhat.com> - 1:1.1.3-4
 - Rebuilt for Python 3.14.0rc2 bytecode
